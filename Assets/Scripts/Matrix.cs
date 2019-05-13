@@ -6,6 +6,7 @@ public class Matrix
     private int width;
     private int height;
     private double[,] matrix;
+    public delegate double Function(double value);
 
     public Matrix(int width, int height)
     {
@@ -63,6 +64,17 @@ public class Matrix
             }
         }
         return result;
+    }
+
+    public void applyFunction(Function function)
+    {
+        for (int y = 0; y < this.height; y++)
+        {
+            for (int x = 0; x < this.width; x++)
+            {
+                matrix[x, y] = function(matrix[x, y]);
+            }
+        }
     }
 
     public override string ToString()
