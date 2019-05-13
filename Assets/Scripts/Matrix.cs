@@ -14,6 +14,13 @@ public class Matrix
         this.height = height;
     }
 
+    public Matrix(double[,] data)
+    {
+        matrix = data;
+        this.width = data.GetLength(0);
+        this.height = data.GetLength(1);
+    }
+
     public void setMatrixField(double value, int x, int y)
     {
         if (x >= width || y >= height)
@@ -52,9 +59,23 @@ public class Matrix
                 {
                     value += m1.matrix[xM1, yM1] * m2.matrix[xM2, xM1];
                 }
-                result.setMatrixField(value, yM1, xM2);
+                result.setMatrixField(value, xM2, yM1);
             }
         }
         return result;
+    }
+
+    public override string ToString()
+    {
+        string matrixString = "";
+        for (int y = 0; y < this.height; y++)
+        {
+            for (int x = 0; x < this.width; x++)
+            {
+                matrixString += matrix[x, y] + " ";
+            }
+            matrixString += "\n";
+        }
+        return matrixString;
     }
 }
